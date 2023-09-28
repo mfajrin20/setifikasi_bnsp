@@ -12,6 +12,7 @@ Dalam aplikasi yang menggunakan Flutter dengan basis bahasa Dart, penggunaan dat
 get_storage adalah package Flutter yang digunakan untuk menyimpan data secara lokal di perangkat pengguna dalam bentuk key-value pairs. Ini sering digunakan untuk menyimpan data sederhana seperti pengaturan aplikasi, preferensi pengguna, atau data kecil lainnya yang perlu dipertahankan di antara sesi aplikasi.
 Dengan get_storage, dapat dengan mudah menyimpan, mengambil, dan menghapus data dari penyimpanan lokal tanpa perlu berurusan dengan query SQL atau tabel. Ini menyederhanakan penggunaan penyimpanan lokal.
 Contoh penggunaan get_storage untuk menyimpan dan mengambil data:
+
 import 'package:get_storage/get_storage.dart';
 
 // Inisialisasi penyimpanan lokal
@@ -30,7 +31,9 @@ var nama = box.read('nama');
 sqflite adalah package Flutter yang digunakan untuk mengelola database SQLite lokal di aplikasi Flutter. SQLite adalah sistem manajemen basis data relasional (RDBMS) yang ringan dan sering digunakan untuk menyimpan data struktural dalam aplikasi mobile.
 Dengan sqflite, dapat membuat tabel, menambahkan data, mengambil data, memperbarui data, dan menghapus data dari database SQLite di aplikasi.
 Contoh penggunaan sqflite untuk membuat tabel dan mengambil data:
+
 import 'package:sqflite/sqflite.dart';
+
 import 'package:path/path.dart';
 
 // Inisialisasi database
