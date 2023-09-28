@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:setifikasi_bnsp/app/Model/transaction_model.dart';
 import 'package:setifikasi_bnsp/app/services/database_service.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:lecle_downloads_path_provider/lecle_downloads_path_provider.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as path;
 
@@ -25,12 +24,12 @@ class TransactionController extends GetxController {
   }
 
   Future<void> addTransaction(
-    TransactionType transactionType, {
-    required DateTime date,
-    required String amount,
-    required String description,
-    required int userId,
-  }) async {
+      TransactionType transactionType, {
+        required DateTime date,
+        required String amount,
+        required String description,
+        required int userId,
+      }) async {
     // parseAmount because by deffault amount = 10.000 String
     double parseAmount = double.parse(amount.replaceAll('.', ''));
     final parseToModel = TransactionModel(
@@ -48,7 +47,7 @@ class TransactionController extends GetxController {
     final dataFromDB = await db.query('transactions'); // take data form db
     final newTransactionModel = transactionModelFromList(dataFromDB)
       ..sort(
-        (a, b) => b.transactionDate!.compareTo(a.transactionDate!),
+            (a, b) => b.transactionDate!.compareTo(a.transactionDate!),
       );
     transactionModel.value = newTransactionModel;
     transactionModel.refresh();
@@ -58,16 +57,16 @@ class TransactionController extends GetxController {
 
   Future<void> exportDatabase() async {
     // Dapatkan path external storage
-    Directory? downloadDir = await DownloadsPath.downloadsDirectory();
+    Directory? externalDir = await getExternalStorageDirectory();
 
     // file database name in local
     String localDatabaseName = "app_data.db";
     // file name when export
     String exportFileName = "app_data.db";
 
-    if (downloadDir != null) {
+    if (externalDir != null) {
       // tentukan path lengkap file export
-      String exportPath = path.join(downloadDir.path, exportFileName);
+      String exportPath = path.join(externalDir.path, exportFileName);
 
       try {
         // dapatkan path database
